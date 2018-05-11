@@ -1,7 +1,7 @@
 {
-  "name": "altcoinio-wallet",
+  "name": "altcoin-plasma-sdk",
   "version": "1.0.0",
-  "description": "Wallet",
+  "description": "SDK for building altcoin.io frontend interfaces. Contains Ethereum and Altcoin.io wallet.",
   "main": "dist/index.js",
   "typings": "dist/src/index.d.ts",
   "jam": {
@@ -68,16 +68,12 @@
     "augur.js": "^4.7.0-18",
     "axios": "^0.17.1",
     "bip39": "git+https://github.com/AltCoinExchange/bip39.git",
-    "bitcoinjs-lib": "^3.3.2",
-    "bitcore": "^4.1.1",
-    "bitcore-mnemonic": "git+https://github.com/AltCoinExchange/bitcore-mnemonic.git",
     "clone": "^2.1.1",
     "codelyzer": "^4.0.2",
     "crypto-browserify": "^3.12.0",
     "hdkey": "^0.8.0",
     "postinstall-build": "^5.0.1",
     "reflect-metadata": "^0.1.10",
-    "ripemd160": "^2.0.1",
     "web3": "^1.0.0-beta.26",
     "web3-utils": "^1.0.0-beta.26"
   },
