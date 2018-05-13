@@ -4,15 +4,16 @@
 import { EthEngine } from "../eth/eth-engine";
 import { TokenConfig } from "../config/tokens/tokenconfig";
 import { TokenConfigMain } from "../config/tokens/tokenconfigmain";
+import {DEX} from "../eth/tokens/dex";
 
-export class GnosisTokenTestnet {
+export class GnosisTokenTestnet extends DEX {
   constructor(ethEngine: EthEngine) {
-    // super(TokenConfig.Gnosis.contractAddress, ethEngine);
+    super(TokenConfig.Gnosis.contractAddress, ethEngine);
   }
 }
 
-export class GnosisTokenMainnet {
+export class GnosisTokenMainnet extends DEX {
   constructor(ethEngine: EthEngine) {
-    // super(TokenConfigMain.Gnosis.contractAddress, ethEngine);
+    super(TokenConfigMain.Gnosis.contractAddress, ethEngine);
   }
 }

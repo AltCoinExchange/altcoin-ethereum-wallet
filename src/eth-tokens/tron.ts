@@ -4,15 +4,16 @@
 import { EthEngine } from "../eth/eth-engine";
 import { TokenConfig } from "../config/tokens/tokenconfig";
 import { TokenConfigMain } from "../config/tokens/tokenconfigmain";
+import {DEX} from "../eth/tokens/dex";
 
-export class TronTokenTestnet {
+export class TronTokenTestnet extends DEX {
   constructor(ethEngine: EthEngine) {
-    // super(TokenConfig.Tron.contractAddress, ethEngine);
+    super(TokenConfig.Tron.contractAddress, ethEngine);
   }
 }
 
-export class TronTokenMainnet {
+export class TronTokenMainnet extends DEX {
   constructor(ethEngine: EthEngine) {
-    // super(TokenConfigMain.Tron.contractAddress, ethEngine);
+    super(TokenConfigMain.Tron.contractAddress, ethEngine);
   }
 }

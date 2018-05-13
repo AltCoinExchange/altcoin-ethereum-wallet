@@ -4,15 +4,16 @@
 import { EthEngine } from "../eth/eth-engine";
 import { TokenConfig } from "../config/tokens/tokenconfig";
 import { TokenConfigMain } from "../config/tokens/tokenconfigmain";
+import {DEX} from "../eth/tokens/dex";
 
-export class EdgelessTokenTestnet {
+export class EdgelessTokenTestnet extends DEX {
     constructor(ethEngine: EthEngine) {
-        // super(TokenConfig.Edgeless.contractAddress, ethEngine);
+        super(TokenConfig.Edgeless.contractAddress, ethEngine);
     }
 }
 
-export class EdgelessTokenMainnet {
+export class EdgelessTokenMainnet extends DEX {
     constructor(ethEngine: EthEngine) {
-        // super(TokenConfigMain.Edgeless.contractAddress, ethEngine);
+        super(TokenConfigMain.Edgeless.contractAddress, ethEngine);
     }
 }

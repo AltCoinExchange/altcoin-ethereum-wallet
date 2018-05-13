@@ -4,15 +4,16 @@
 import { EthEngine } from "../eth/eth-engine";
 import { TokenConfig } from "../config/tokens/tokenconfig";
 import { TokenConfigMain } from "../config/tokens/tokenconfigmain";
+import {DEX} from "../eth/tokens/dex";
 
-export class RequestNetworkTokenTestnet {
+export class RequestNetworkTokenTestnet extends DEX {
     constructor(ethEngine: EthEngine) {
-        // super(TokenConfig.RequestNetwork.contractAddress, ethEngine);
+        super(TokenConfig.RequestNetwork.contractAddress, ethEngine);
     }
 }
 
-export class RequestNetworkTokenMainnet {
+export class RequestNetworkTokenMainnet extends DEX {
     constructor(ethEngine: EthEngine) {
-        // super(TokenConfigMain.RequestNetwork.contractAddress, ethEngine);
+        super(TokenConfigMain.RequestNetwork.contractAddress, ethEngine);
     }
 }
