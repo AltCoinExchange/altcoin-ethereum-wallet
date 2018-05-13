@@ -195,7 +195,7 @@ export class EthEngine {
         });
     }
 
-    public recoverAccount(pkSeed) {
+    public recoverAccountFromSeed(pkSeed) {
         const HDKey = new hdkey.fromMasterSeed(pkSeed);
         const hdnode = HDKey.derive("m/44'/60'/0'/0/0");
         const privKey = hdnode._privateKey.toString();
@@ -203,6 +203,11 @@ export class EthEngine {
         const accounts = this.web3.eth.accounts;
         const acc = accounts.privateKeyToAccount("0x" + privKey);
         return acc;
+    }
+
+    public recoverAccount(pKey: string) {
+      const accounts = this.web3.eth.accounts;
+      return accounts.privateKeyToAccount("0x" + pKey);
     }
 
     public toWei(amount, conversion) {
