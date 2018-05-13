@@ -9,7 +9,8 @@ export module AbiUtil {
     address = 2,
     bool = 3,
     bytes32 = 4,
-    bytes20 = 5
+    bytes20 = 5,
+    uint8 = 6,
   }
 
   // DUH! Do not include reflect-metadata module
