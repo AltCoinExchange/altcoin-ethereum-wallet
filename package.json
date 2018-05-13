@@ -1,7 +1,7 @@
 {
-  "name": "altcoin-plasma-sdk",
+  "name": "altcoin-ethereum-wallet",
   "version": "1.0.0",
-  "description": "SDK for building altcoin.io frontend interfaces. Contains Ethereum and Altcoin.io wallet.",
+  "description": "Altcoin Ethereum Wallet",
   "main": "dist/index.js",
   "typings": "dist/src/index.d.ts",
   "jam": {
