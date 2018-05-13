@@ -1,6 +1,6 @@
 // TODO: Get contract code instead of storing it
 export const TokenConfig = {
-  AtomicSwap: {
+  DEX: {
     code: "",
     contractAddress: "0xe18c6E2D9ca2D79B6a6Cd9aEea89ae766ec68cbf"
   },

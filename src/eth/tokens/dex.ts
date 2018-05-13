@@ -5,6 +5,7 @@ import AbiType = AbiUtil.AbiType;
 import getAbiParams = AbiUtil.getAbiParams;
 import {EthConfirmation, EthEngine} from "../eth-engine";
 import {ERC20} from "./ERC20";
+import {TokenConfig} from "../../config/tokens/tokenconfig";
 
 
 export class DEX extends ERC20 {
@@ -22,7 +23,7 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("currentDepositNonce", {}, generalParams, EthConfirmation.STATIC, abi, this.contractAddress);
+    const result: any = await this.ethEngine.callFunction("currentDepositNonce", {}, generalParams, EthConfirmation.STATIC, abi, TokenConfig.DEX.contractAddress);
     return result;
   }
 
@@ -34,7 +35,7 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("DepositToken", [token, amount], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
+    const result: any = await this.ethEngine.callFunction("DepositToken", [token, amount], configParams, EthConfirmation.CONFIRMATION, abi, TokenConfig.DEX.contractAddress);
     return result;
   }
 
@@ -48,7 +49,7 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("withdraw", [token, amount], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
+    const result: any = await this.ethEngine.callFunction("withdraw", [token, amount], configParams, EthConfirmation.CONFIRMATION, abi, TokenConfig.DEX.contractAddress);
     return result;
   }
 
