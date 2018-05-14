@@ -1,6 +1,7 @@
 import { IEthAccount } from "./eth-account";
 import { EthConfirmation, EthEngine } from "./eth-engine";
 import * as AppConfig from "../config/config-eth";
+import * as bip39 from "bip39";
 
 export class EthereumWallet {
   public walletAddress: string = undefined;
@@ -31,6 +32,18 @@ export class EthereumWallet {
 
   public recover(privateKey?) {
     return this.engine.recoverAccount(privateKey);
+  }
+
+  public recoverAccountFromSeed(pkSeed) {
+    return this.engine.recoverAccountFromSeed(pkSeed);
+  }
+
+  public generateMnemonic() {
+    return bip39.generateMnemonic();
+  }
+
+  public mnemonicToSeed(mnemonic) {
+    return bip39.mnemonicToSeed(mnemonic);
   }
 
   public async getbalance(address) {

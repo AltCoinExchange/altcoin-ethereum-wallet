@@ -1,7 +1,6 @@
 import * as Web3 from "web3/src";
 import { Contract } from "web3/types";
 import { IEthAccount } from "./eth-account";
-import axios from "axios";
 import hdkey from "hdkey";
 
 const walletN = 256;
@@ -229,15 +228,6 @@ export class EthEngine {
     }
 
     /**
-     * Get raw change address
-     * Unfortunately this is not working normal so far therefore it will be fallback to BlockCypher
-     * @returns {Promise<null>}
-     */
-    public async getTransactionList(address: string) {
-        return await this.getTransactionsFromBlockCypher(address);
-    }
-
-    /**
      * Get the blocks from chain
      * Basically we could make full client out of this
      * @param startingBlock
@@ -376,15 +366,5 @@ export class EthEngine {
 
             return nt; // number of threads spawned (they'll continue processing)
         });
-    }
-
-    private async getFeeFromBlockCypher() {
-        const res = await axios.get("https://api.blockcypher.com/v1/btc/test3");
-        return res.data.result.medium_fee_per_kb;
-    }
-
-    private async getTransactionsFromBlockCypher(address: string, limit: string = "50") {
-        const res = await axios.get(`https://api.blockcypher.com/v1/beth/test/addrs/${address}/full?limit=${limit}`);
-        return res.data;
     }
 }
