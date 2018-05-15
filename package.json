@@ -64,7 +64,6 @@
   },
   "dependencies": {
     "augur-contracts": "^3.3.10",
-    "augur.js": "^4.7.0-18",
     "axios": "^0.17.1",
     "bip39": "git+ssh://git@github.com:AltCoinExchange/bip39.git",
     "clone": "^2.1.1",
