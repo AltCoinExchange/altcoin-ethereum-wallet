@@ -11,11 +11,11 @@
     "dist/index.js": "./dist/index.browser.js"
   },
   "scripts": {
-    "build": "webpack || echo not ok && babel dist/index.browser.js -o dist/index.browser.js --presets=es2015",
+    "build_dist": "webpack || echo not ok && babel dist/index.browser.js -o dist/index.browser.js --presets=es2015",
     "test:watch": "npm test -- --watch",
     "coverage": "npm test -- --coverage --no-cache",
     "coverage:watch": "npm run coverage -- --watch",
-    "prepare": "npm run build && npm test",
+    "prepare": "",
     "release": "standard-version && npm pack"
   },
   "repository": {
