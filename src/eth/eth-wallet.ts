@@ -6,12 +6,11 @@ import * as bip39 from "bip39";
 export class EthereumWallet {
   public walletAddress: string = undefined;
   public engine: EthEngine;
-  private abiConfiguration;
   private appConfiguration;
-  private bin;
 
-  constructor() {
+  constructor() {    
     this.appConfiguration = AppConfig.EthConfiguration.hosts[0];
+    this.engine = new EthEngine(null, this.appConfiguration, null);
   }
 
   public getAddress() {
