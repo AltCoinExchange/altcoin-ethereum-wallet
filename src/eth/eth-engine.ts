@@ -199,8 +199,12 @@ export class EthEngine {
         const hdnode = HDKey.derive("m/44'/60'/0'/0/0");
         const privKey = hdnode._privateKey.toString("hex");
         const accounts = this.web3.eth.accounts;
-        const acc = accounts.privateKeyToAccount("0x" + privKey);
-        return acc;
+        const account = accounts.privateKeyToAccount("0x" + privKey);
+
+        this.configuration.defaultWallet = account.address;
+        this.web3.eth.defaultAccount = account.address;
+
+        return account;
     }
 
     public recoverAccount(pKey: string) {
