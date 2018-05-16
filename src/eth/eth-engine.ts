@@ -1,7 +1,7 @@
 import * as Web3 from "web3/src";
 import { Contract } from "web3/types";
 import { IEthAccount } from "./eth-account";
-import hdkey from "hdkey";
+import * as hdkey from "hdkey";
 
 const walletN = 256;
 
