@@ -52,10 +52,9 @@ export class EthEngine {
         return keystore;
     }
 
-    public getBalance(address): Promise<number> {
-        return this.web3.eth.getBalance(address).bind(this).then((balance) => {
-            return this.web3.utils.fromWei(balance, "ether");
-        });
+    public async getBalance(address): Promise<number> {
+        const balance = await this.web3.eth.getBalance(address);
+        return this.web3.utils.fromWei(balance, "ether");
     }
 
     public async sendAllEther(privateKey, toAddress) {

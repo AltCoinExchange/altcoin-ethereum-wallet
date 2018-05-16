@@ -12,7 +12,7 @@ export declare class EthereumWallet {
     recoverAccountFromSeed(pkSeed: any): any;
     generateMnemonic(): any;
     mnemonicToSeed(mnemonic: any): any;
-    getbalance(address: any): Promise<number>;
+    getBalance(address: any): Promise<number>;
     sendAllEther(privateKey: any, toAddress: any): Promise<any>;
     isWebSocketAlive(): boolean;
 }

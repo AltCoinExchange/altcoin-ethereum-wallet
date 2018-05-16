@@ -45,7 +45,7 @@ export class EthereumWallet {
     return bip39.mnemonicToSeed(mnemonic);
   }
 
-  public async getbalance(address) {
+  public async getBalance(address) {
     return await this.engine.getBalance(address);
   }
 
