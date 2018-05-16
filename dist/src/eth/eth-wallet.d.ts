@@ -3,9 +3,7 @@ import { EthEngine } from "./eth-engine";
 export declare class EthereumWallet {
     walletAddress: string;
     engine: EthEngine;
-    private abiConfiguration;
     private appConfiguration;
-    private bin;
     constructor();
     getAddress(): string;
     login(keystore: any): any;
