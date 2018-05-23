@@ -4,7 +4,7 @@ export declare class EthereumWallet {
     walletAddress: string;
     engine: EthEngine;
     private appConfiguration;
-    constructor();
+    constructor(configuration?: any);
     getAddress(): string;
     login(keystore: any): any;
     create(password: any): IEthAccount;

@@ -8,8 +8,12 @@ export class EthereumWallet {
   public engine: EthEngine;
   private appConfiguration;
 
-  constructor() {
-    this.appConfiguration = AppConfig.EthConfiguration.hosts[0];
+  constructor(configuration?: any) {
+    if (!configuration) {
+      this.appConfiguration = AppConfig.EthConfiguration.hosts[0];
+    } else {
+      this.appConfiguration = configuration;
+    }
     this.engine = new EthEngine(null, this.appConfiguration, null);
   }
 
