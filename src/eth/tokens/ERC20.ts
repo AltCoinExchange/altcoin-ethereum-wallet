@@ -42,7 +42,9 @@ export class ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("transfer", [to, value], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
+    const amount = this.ethEngine.toWei(value, "ether");
+
+    const result: any = await this.ethEngine.callFunction("transfer", [to, amount], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
     return result;
   }
 
@@ -55,7 +57,9 @@ export class ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("transferFrom", [from, to, value], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
+    const amount = this.ethEngine.toWei(value, "ether");
+
+    const result: any = await this.ethEngine.callFunction("transferFrom", [from, to, amount], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
     return result;
   }
 
@@ -67,7 +71,9 @@ export class ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("approve", [spender, value], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
+    const amount = this.ethEngine.toWei(value, "ether");
+
+    const result: any = await this.ethEngine.callFunction("approve", [spender, amount], configParams, EthConfirmation.CONFIRMATION, abi, this.contractAddress);
     return result;
   }
 
