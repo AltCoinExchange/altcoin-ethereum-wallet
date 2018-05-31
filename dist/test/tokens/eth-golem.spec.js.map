@@ -1,0 +1,1 @@
+{"version":3,"file":"eth-golem.spec.js","sourceRoot":"","sources":["../../../test/tokens/eth-golem.spec.ts"],"names":[],"mappings":";;AACA,4BAA0B;AAC1B,gBAAc;AAEd,oDAA6D;AAM7D,QAAQ,CAAC,iBAAiB,EAAE;IAC1B,OAAO,CAAC,wBAAwB,GAAG,KAAK,CAAC;IACzC,EAAE,CAAC,oBAAoB,EAAE;QACvB,MAAM,CAAC,OAAO,yBAAiB,CAAC,CAAC,IAAI,CAAC,UAAU,CAAC,CAAC;IACpD,CAAC,CAAC,CAAC;AAmBL,CAAC,CAAC,CAAC"}
