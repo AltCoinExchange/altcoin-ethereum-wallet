@@ -49,7 +49,7 @@ export class DEX extends ERC20 {
 
     const amount = this.ethEngine.toWei(value.toString(), "ether");
 
-    const result: any = await this.ethEngine.callFunction("DepositToken", [this.contractAddress, amount], configParams, EthConfirmation.RECEIPT, abi, this._dexContractAddress);
+    const result: any = await this.ethEngine.callFunction("DepositToken", [this.contractAddress, amount], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
     return result;
   }
 
