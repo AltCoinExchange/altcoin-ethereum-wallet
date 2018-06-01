@@ -28,7 +28,7 @@ export class DEX extends ERC20 {
     return result;
   }
 
-  @abiParams({stateMutability: "payable"}, {"": AbiType.uint256}, {"token": AbiType.address}, {"amount": AbiType.uint256})
+  @abiParams({stateMutability: "payable"}, {"": AbiType.uint256}, {"token": AbiType.address})
   public async DepositToken(amount: number): Promise<any> {
     const abi = getAbiParams(this, "DepositToken");
 
