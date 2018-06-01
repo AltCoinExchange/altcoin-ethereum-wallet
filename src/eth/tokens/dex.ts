@@ -28,7 +28,7 @@ export class DEX extends ERC20 {
     return result;
   }
 
-  @abiParams({stateMutability: "payable"}, {"": AbiType.uint256}, {"token": AbiType.address})
+  @abiParams({stateMutability: "payable"}, {"": AbiType.uint256}, {"token": AbiType.address}, {"amount": AbiType.uint256})
   public async DepositToken(amount: number): Promise<any> {
     const abi = getAbiParams(this, "DepositToken");
 
@@ -36,8 +36,9 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
+    const value = this.ethEngine.toWei(amount.toString(), "ether");
 
-    const result: any = await this.ethEngine.callFunction("DepositToken", [this.contractAddress, amount], configParams, EthConfirmation.CONFIRMATION, abi, TokenConfig.DEX.contractAddress);
+    const result: any = await this.ethEngine.callFunction("DepositToken", [this.contractAddress, value], configParams, EthConfirmation.CONFIRMATION, abi, TokenConfig.DEX.contractAddress);
     return result;
   }
 

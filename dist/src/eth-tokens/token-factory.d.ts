@@ -1,5 +1,5 @@
 import { EthEngine } from "../eth/eth-engine";
-import { AugurTokenMainnet, AugurTokenTestnet } from "./augur";
+import { GolemTokenMainnet } from "./golem";
 export declare enum TOKENS {
     AUGUR = 1,
     GOLEM = 2,
@@ -35,6 +35,6 @@ export declare enum TOKENS {
     ZEROX = 32,
 }
 export declare class TokenFactory {
-    static GetToken(token: TOKENS, engine: EthEngine, testnet?: boolean): AugurTokenTestnet;
-    static GetTokenMain(token: TOKENS, engine: EthEngine): AugurTokenMainnet;
+    static GetToken(token: TOKENS, engine: EthEngine, testnet?: boolean): GolemTokenMainnet;
+    static GetTokenMain(token: TOKENS, engine: EthEngine): GolemTokenMainnet;
 }
