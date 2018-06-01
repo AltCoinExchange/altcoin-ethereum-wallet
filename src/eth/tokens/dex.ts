@@ -11,8 +11,19 @@ import {TOKENS} from "../../eth-tokens";
 
 export class DEX extends ERC20 {
 
+  private _dexContractAddress;
+
+  get dexContractAddress() {
+    return this._dexContractAddress;
+  }
+
+  set dexContractAddress(value) {
+    this._dexContractAddress = value;
+  }
+
   public constructor(contractAddress: string, ethEngine: EthEngine) {
     super(contractAddress, ethEngine);
+    this._dexContractAddress = TokenConfig.DEX.contractAddress;
   }
 
   @abiParams({stateMutability: "view"}, {"": AbiType.uint256})
@@ -24,7 +35,7 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("currentDepositNonce", {}, generalParams, EthConfirmation.STATIC, abi, TokenConfig.DEX.contractAddress);
+    const result: any = await this.ethEngine.callFunction("currentDepositNonce", {}, generalParams, EthConfirmation.STATIC, abi, this._dexContractAddress);
     return result;
   }
 
@@ -38,7 +49,7 @@ export class DEX extends ERC20 {
 
     // const amount = this.ethEngine.toWei(value.toString(), "ether");
 
-    const result: any = await this.ethEngine.callFunction("DepositToken", [this.contractAddress, value], configParams, EthConfirmation.CONFIRMATION, abi, TokenConfig.DEX.contractAddress);
+    const result: any = await this.ethEngine.callFunction("DepositToken", [this.contractAddress, value], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
     return result;
   }
 
@@ -52,7 +63,7 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("withdraw", [this.contractAddress, amount, nonce, v, r, s], configParams, EthConfirmation.CONFIRMATION, abi, TokenConfig.DEX.contractAddress);
+    const result: any = await this.ethEngine.callFunction("withdraw", [this.contractAddress, amount, nonce, v, r, s], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
     return result;
   }
 
