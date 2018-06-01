@@ -2,7 +2,7 @@
 export const TokenConfig = {
   DEX: {
     code: "",
-    contractAddress: "0xC509e629264160dB7ce77bf6C33b5e36d36576B4"
+    contractAddress: "0xE228be91B88d570519219fc3b8fd724005DC2173"
   },
   Augur: {
     code: "",
