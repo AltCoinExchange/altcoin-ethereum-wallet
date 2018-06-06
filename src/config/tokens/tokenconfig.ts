@@ -131,5 +131,9 @@ export const TokenConfig = {
   ZeroX: {
     code: "",
     contractAddress: "0x334ca5ce83a12207a3677eec2e723f4b0dee7f40"
+  },
+  WETH: {
+    code: "",
+    contractAddress: "0x58d20e5da51b8705343f56bca258d14725c55d2c"
   }
 };

@@ -33,6 +33,7 @@ export declare enum TOKENS {
     VECHAIN = 30,
     ICON = 31,
     ZEROX = 32,
+    WETH = 33,
 }
 export declare class TokenFactory {
     static GetToken(token: TOKENS, engine: EthEngine, testnet?: boolean): GolemTokenMainnet;

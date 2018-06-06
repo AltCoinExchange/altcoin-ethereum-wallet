@@ -31,6 +31,7 @@ import {BancorTokenTestnet} from "./bancor";
 import {IconomiTokenTestnet} from "./iconomi";
 import {TenXPayTokenTestnet} from "./tenxpay";
 import {StorjTokenTestnet} from "./storj";
+import {WETHTokenTestnet, WETHTokenMainnet} from "./weth";
 
 export enum TOKENS {
   AUGUR = 1,
@@ -64,7 +65,8 @@ export enum TOKENS {
   EDGELESS,
   VECHAIN,
   ICON,
-  ZEROX
+  ZEROX,
+  WETH
 }
 
 export class TokenFactory {
@@ -170,6 +172,9 @@ export class TokenFactory {
       case TOKENS.ZEROX: {
         return new ZeroXTokenTestnet(engine);
       }
+      case TOKENS.WETH: {
+        return new WETHTokenTestnet(engine);
+      }
     }
   }
 
@@ -270,6 +275,9 @@ export class TokenFactory {
       }
       case TOKENS.ZEROX: {
         return new ZeroXTokenTestnet(engine);
+      }
+      case TOKENS.WETH: {
+        return new WETHTokenMainnet(engine);
       }
     }
   }

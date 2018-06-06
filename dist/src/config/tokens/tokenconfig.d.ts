@@ -131,4 +131,8 @@ export declare const TokenConfig: {
         code: string;
         contractAddress: string;
     };
+    WETH: {
+        code: string;
+        contractAddress: string;
+    };
 };
