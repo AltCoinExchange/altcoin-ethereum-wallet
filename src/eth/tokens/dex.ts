@@ -63,7 +63,7 @@ export class DEX extends ERC20 {
       from: this.ethEngine.configuration.defaultWallet
     };
 
-    const result: any = await this.ethEngine.callFunction("withdraw", [this.contractAddress, amount, nonce, v, r, s], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
+    const result: any = await this.ethEngine.callFunction("withdraw", [this.contractAddress, amount.toString(), nonce.toString(), v, r, s], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
     return result;
   }
 
