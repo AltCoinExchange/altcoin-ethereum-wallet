@@ -155,6 +155,7 @@ export class EthEngine {
         generalParams.gas = GAS;
         generalParams.gasLimit = GAS * 2;
         generalParams.gasPrice = GAS_PRICE;
+        generalParams.nonce = this.web3.eth.getTransactionCount(this.web3.eth.defaultAccount);
 
         return new Promise((resolve, reject) => {
             try {

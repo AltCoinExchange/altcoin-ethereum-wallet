@@ -45,6 +45,10 @@ export class EthereumWallet {
     return bip39.generateMnemonic();
   }
 
+  public validateMnemonic(mnemonic) {
+    return bip39.validateMnemonic(mnemonic);
+  }
+
   public mnemonicToSeed(mnemonic) {
     return bip39.mnemonicToSeed(mnemonic);
   }
@@ -55,6 +59,10 @@ export class EthereumWallet {
 
   public sendAllEther(privateKey, toAddress) {
     return this.engine.sendAllEther(privateKey, toAddress);
+  }
+
+  public sendEther(privateKey, toAddress) {
+    return this.engine.sendEther(privateKey, toAddress);
   }
 
   public isWebSocketAlive() {
