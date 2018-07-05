@@ -54,9 +54,9 @@ export class DEX extends ERC20 {
   }
 
 
-  @abiParams({stateMutability: "payable"}, {"": AbiType.bool}, {"token": AbiType.address}, {"msgHash": AbiType.bytes32},
+  @abiParams({stateMutability: "payable"}, {"": AbiType.bool}, {"token": AbiType.address}, {"validatorSender": AbiType.address},
     {"amount": AbiType.uint256}, {"nonce": AbiType.uint256}, {"v": AbiType.uint8}, {"r": AbiType.bytes32}, {"s": AbiType.bytes32})
-  public async withdraw(msgHash: string, amount: number, nonce: number, v: string, r: string, s: string): Promise<any> {
+  public async withdraw(validatorSender: string, amount: number, nonce: number, v: string, r: string, s: string): Promise<any> {
     const abi = getAbiParams(this, "withdraw");
 
     const configParams = {
@@ -65,7 +65,7 @@ export class DEX extends ERC20 {
 
     const convertedAmount = this.ethEngine.toWei(amount.toString(), "ether");
 
-    const result: any = await this.ethEngine.callFunction("withdraw", [this.contractAddress, msgHash, convertedAmount, nonce.toString(), v, r, s], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
+    const result: any = await this.ethEngine.callFunction("withdraw", [this.contractAddress, validatorSender, convertedAmount, nonce.toString(), v, r, s], configParams, EthConfirmation.CONFIRMATION, abi, this._dexContractAddress);
     return result;
   }
 

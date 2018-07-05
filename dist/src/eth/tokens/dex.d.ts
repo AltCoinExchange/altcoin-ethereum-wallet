@@ -6,5 +6,5 @@ export declare class DEX extends ERC20 {
     constructor(contractAddress: string, ethEngine: EthEngine);
     currentDepositNonce(): Promise<any>;
     DepositToken(value: number): Promise<any>;
-    withdraw(msgHash: string, amount: number, nonce: number, v: string, r: string, s: string): Promise<any>;
+    withdraw(validatorSender: string, amount: number, nonce: number, v: string, r: string, s: string): Promise<any>;
 }
