@@ -2,7 +2,7 @@ import { IEthAccount } from "./eth-account";
 export declare enum EthConfirmation {
     RECEIPT = 0,
     CONFIRMATION = 1,
-    STATIC = 2,
+    STATIC = 2
 }
 export declare class EthEngine {
     private abiConfiguration;

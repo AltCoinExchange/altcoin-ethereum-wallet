@@ -1,8 +1,10 @@
 import { IEthAccount } from "./eth-account";
 import { EthEngine } from "./eth-engine";
+import { EtherWrapper } from "./tokens/etherWrapper";
 export declare class EthereumWallet {
     walletAddress: string;
     engine: EthEngine;
+    etherWrapper: EtherWrapper;
     private appConfiguration;
     constructor(configuration?: any);
     getAddress(): string;
@@ -17,4 +19,5 @@ export declare class EthereumWallet {
     sendAllEther(privateKey: any, toAddress: any): Promise<any>;
     sendEther(privateKey: any, toAddress: any): Promise<any>;
     isWebSocketAlive(): boolean;
+    unwrapEther(amount: any): Promise<any>;
 }

@@ -1,11 +1,13 @@
 import { IEthAccount } from "./eth-account";
 import { EthConfirmation, EthEngine } from "./eth-engine";
+import { EtherWrapper } from "./tokens/etherWrapper";
 import * as AppConfig from "../config/config-eth";
 import * as bip39 from "bip39";
 
 export class EthereumWallet {
   public walletAddress: string = undefined;
   public engine: EthEngine;
+  public etherWrapper: EtherWrapper;
   private appConfiguration;
 
   constructor(configuration?: any) {
@@ -67,5 +69,9 @@ export class EthereumWallet {
 
   public isWebSocketAlive() {
     return this.engine.isListening();
+  }
+
+  public unwrapEther(amount) {
+    return this.etherWrapper.withdraw(amount);
   }
 }
