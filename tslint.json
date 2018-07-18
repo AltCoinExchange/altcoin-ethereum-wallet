@@ -9,6 +9,7 @@
 		"member-ordering": false,
 		"object-literal-key-quotes": false,
 		"trailing-comma": false,
-		"eofline": false
+		"eofline": false,
+		"max-line-length": [200]
 	}
 }

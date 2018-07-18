@@ -1,6 +1,7 @@
 import * as Web3 from "web3/src";
 import { Contract } from "web3/types";
 import { IEthAccount } from "./eth-account";
+import { BigNumber } from "bignumber.js";
 import * as hdkey from "hdkey";
 
 const walletN = 256;
@@ -69,14 +70,20 @@ export class EthEngine {
             },
         );
 
+        const allEther: string = (new BigNumber(currentBalance))
+          .minus(estimateGas)
+          .multipliedBy(
+            (new BigNumber(currentGasPrice))
+              .multipliedBy(gasMultiplier)).toString();
+
         const signedTx = await this.web3.eth.signTransaction(
             {
                 from: this.web3.eth.defaultAccount,
                 gasPrice: currentGasPrice,
                 gas: estimateGas,
-                gasLimit: estimateGas * gasMultiplier,
+                gasLimit: (new BigNumber(estimateGas)).multipliedBy(gasMultiplier).toString(), // estimateGas * gasMultiplier
                 to: toAddress,
-                value: currentBalance - estimateGas * currentGasPrice * gasMultiplier,
+                value: allEther, // currentBalance - estimateGas * currentGasPrice * gasMultiplier,
                 data: "",
             }, privateKey,
         );
@@ -101,7 +108,7 @@ export class EthEngine {
                 from: this.web3.eth.defaultAccount,
                 gasPrice: currentGasPrice,
                 gas: estimateGas,
-                gasLimit: estimateGas * gasMultiplier,
+                gasLimit: (new BigNumber(estimateGas)).multipliedBy(gasMultiplier), // estimateGas * gasMultiplier
                 to: toAddress,
                 value: weiBalance,
             },
