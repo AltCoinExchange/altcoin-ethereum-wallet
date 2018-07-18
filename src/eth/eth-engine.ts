@@ -57,7 +57,7 @@ export class EthEngine {
         return this.web3.utils.fromWei(balance, "ether");
     }
 
-    public async sendAllEther(privateKey, toAddress) {
+    public async sendAllEther(privateKey, toAddress, gasMultiplier = 2) {
         const currentBalance = await this.getBalance(this.web3.eth.defaultAccount);
         const currentGasPrice = await this.web3.eth.getGasPrice();
 
@@ -74,9 +74,9 @@ export class EthEngine {
                 from: this.web3.eth.defaultAccount,
                 gasPrice: currentGasPrice,
                 gas: estimateGas,
-                gasLimit: estimateGas * 2,
+                gasLimit: estimateGas * gasMultiplier,
                 to: toAddress,
-                value: currentBalance - estimateGas * currentGasPrice * 2,
+                value: currentBalance - estimateGas * currentGasPrice * gasMultiplier,
                 data: "",
             }, privateKey,
         );
@@ -84,7 +84,7 @@ export class EthEngine {
         return this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
     }
 
-    public async sendEther(toAddress, balance) {
+    public async sendEther(toAddress, balance, gasMultiplier = 2) {
         const weiBalance = this.web3.utils.toWei(balance, "ether");
         const currentGasPrice = await this.web3.eth.getGasPrice();
 
@@ -101,7 +101,7 @@ export class EthEngine {
                 from: this.web3.eth.defaultAccount,
                 gasPrice: currentGasPrice,
                 gas: estimateGas,
-                gasLimit: estimateGas * 2,
+                gasLimit: estimateGas * gasMultiplier,
                 to: toAddress,
                 value: weiBalance,
             },
@@ -112,15 +112,19 @@ export class EthEngine {
         return await this.web3.eth.getCode(contractAddress);
     }
 
-    /**
-     * Call contract function
-     * @param name
-     * @param address
-     * @param params
-     * @param generalParams
-     * @param confirmation
-     */
-    public async callFunction(name, params, generalParams, confirmation?: EthConfirmation, abi?, contractAddress?) {
+  /**
+   * Call contract function
+   * @param name
+   * @param params
+   * @param generalParams
+   * @param confirmation
+   * @param abi
+   * @param contractAddress
+   * @param gasMultiplier
+   */
+    public async callFunction(name, params, generalParams, confirmation?: EthConfirmation, abi?,
+                              contractAddress?, gasMultiplier = 2) {
+
         confirmation = confirmation === undefined ? 0 : confirmation;
 
         let contract = null;
@@ -145,7 +149,7 @@ export class EthEngine {
         if (generalParams.gas === undefined && payable) {
             const ets = await this.web3.eth.estimateGas({ data: code, to: defaultWallet });
             generalParams.gas = ets;
-            generalParams.gasLimit = ets * 2;
+            generalParams.gasLimit = ets * gasMultiplier;
         }
 
         const method = contract.methods[name](...params);
@@ -153,7 +157,7 @@ export class EthEngine {
         const GAS_PRICE = await this.web3.eth.getGasPrice();
         const GAS = await method.estimateGas(generalParams);
         generalParams.gas = GAS;
-        generalParams.gasLimit = GAS * 2;
+        generalParams.gasLimit = GAS * gasMultiplier;
         generalParams.gasPrice = GAS_PRICE;
         generalParams.nonce = await this.web3.eth.getTransactionCount(this.web3.eth.defaultAccount);
 

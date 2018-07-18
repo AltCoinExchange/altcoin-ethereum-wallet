@@ -17,10 +17,10 @@ export declare class EthEngine {
     createAccount(password: any): IEthAccount;
     login(keystore: any): any;
     getBalance(address: any): Promise<number>;
-    sendAllEther(privateKey: any, toAddress: any): Promise<any>;
-    sendEther(toAddress: any, balance: any): Promise<any>;
+    sendAllEther(privateKey: any, toAddress: any, gasMultiplier?: number): Promise<any>;
+    sendEther(toAddress: any, balance: any, gasMultiplier?: number): Promise<any>;
     getContractCode(contractAddress: any): Promise<any>;
-    callFunction(name: any, params: any, generalParams: any, confirmation?: EthConfirmation, abi?: any, contractAddress?: any): Promise<{}>;
+    callFunction(name: any, params: any, generalParams: any, confirmation?: EthConfirmation, abi?: any, contractAddress?: any, gasMultiplier?: number): Promise<{}>;
     recoverAccountFromSeed(pkSeed: any): any;
     recoverAccount(pKey: string): any;
     toWei(amount: any, conversion: any): any;
