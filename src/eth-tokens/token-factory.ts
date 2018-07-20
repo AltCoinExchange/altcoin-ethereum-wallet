@@ -34,7 +34,8 @@ import {StorjTokenTestnet} from "./storj";
 import {WETHTokenTestnet, WETHTokenMainnet} from "./weth";
 
 export enum TOKENS {
-  AUGUR = 1,
+  WETH = 1,
+  AUGUR,
   GOLEM,
   GNOSIS,
   BAT,
@@ -66,7 +67,6 @@ export enum TOKENS {
   VECHAIN,
   ICON,
   ZEROX,
-  WETH
 }
 
 export class TokenFactory {
@@ -76,6 +76,9 @@ export class TokenFactory {
     }
 
     switch (token) {
+      case TOKENS.WETH: {
+        return new WETHTokenTestnet(engine);
+      }
       case TOKENS.GOLEM: {
         return new GolemTokenTestnet(engine);
       }
@@ -172,14 +175,14 @@ export class TokenFactory {
       case TOKENS.ZEROX: {
         return new ZeroXTokenTestnet(engine);
       }
-      case TOKENS.WETH: {
-        return new WETHTokenTestnet(engine);
-      }
     }
   }
 
   public static GetTokenMain(token: TOKENS, engine: EthEngine) {
     switch (token) {
+      case TOKENS.WETH: {
+        return new WETHTokenMainnet(engine);
+      }
       case TOKENS.GOLEM: {
         return new GolemTokenMainnet(engine);
       }
@@ -275,9 +278,6 @@ export class TokenFactory {
       }
       case TOKENS.ZEROX: {
         return new ZeroXTokenTestnet(engine);
-      }
-      case TOKENS.WETH: {
-        return new WETHTokenMainnet(engine);
       }
     }
   }

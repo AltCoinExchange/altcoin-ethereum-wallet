@@ -6,7 +6,6 @@ import getAbiParams = AbiUtil.getAbiParams;
 import {EthConfirmation, EthEngine} from "../eth-engine";
 import {ERC20} from "./ERC20";
 import {TokenConfig} from "../../config/tokens/tokenconfig";
-import {TOKENS} from "../../eth-tokens";
 
 
 export class DEX extends ERC20 {
