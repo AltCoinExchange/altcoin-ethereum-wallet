@@ -17,6 +17,7 @@ export class EthereumWallet {
       this.appConfiguration = configuration;
     }
     this.engine = new EthEngine(null, this.appConfiguration, null);
+    this.etherWrapper = new EtherWrapper(this.engine);
   }
 
   public getAddress() {

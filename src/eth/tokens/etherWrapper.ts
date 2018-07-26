@@ -8,10 +8,11 @@ import getAbiParams = AbiUtil.getAbiParams;
 export class EtherWrapper {
 
   ethEngine: EthEngine;
-  public contractAddress: '0x58d20e5da51b8705343f56bca258d14725c55d2c';
+  public contractAddress: string;
 
-  public constructor(contractAddress: string, ethEngine: EthEngine) {
+  public constructor(ethEngine: EthEngine) {
     this.ethEngine = ethEngine;
+    this.contractAddress = '0x58d20e5da51b8705343f56bca258d14725c55d2c';
   }
 
   @abiParams({}, {"": AbiType.uint256})
