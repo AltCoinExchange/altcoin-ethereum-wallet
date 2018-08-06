@@ -32,6 +32,8 @@ import {IconomiTokenTestnet} from "./iconomi";
 import {TenXPayTokenTestnet} from "./tenxpay";
 import {StorjTokenTestnet} from "./storj";
 import {WETHTokenTestnet, WETHTokenMainnet} from "./weth";
+import {BloomTokenTestnet, BloomTokenMainnet} from "./bloom";
+import {LunyrTokenTestnet, LunyrTokenMainnet} from "./lunyr";
 
 export enum TOKENS {
   WETH = 1,
@@ -67,6 +69,8 @@ export enum TOKENS {
   VECHAIN,
   ICON,
   ZEROX,
+  BLOOM,
+  LUNYR
 }
 
 export class TokenFactory {
@@ -175,6 +179,12 @@ export class TokenFactory {
       case TOKENS.WETH: {
         return new WETHTokenTestnet(engine);
       }
+      case TOKENS.BLOOM: {
+        return new BloomTokenTestnet(engine);
+      }
+      case TOKENS.LUNYR: {
+        return new LunyrTokenTestnet(engine);
+      }
     }
   }
 
@@ -278,6 +288,12 @@ export class TokenFactory {
       }
       case TOKENS.WETH: {
         return new WETHTokenMainnet(engine);
+      }
+      case TOKENS.BLOOM: {
+        return new BloomTokenMainnet(engine);
+      }
+      case TOKENS.LUNYR: {
+        return new LunyrTokenMainnet(engine);
       }
     }
   }

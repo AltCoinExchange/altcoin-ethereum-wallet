@@ -135,5 +135,13 @@ export const TokenConfig = {
   WETH: {
     code: "",
     contractAddress: "0x58d20e5da51b8705343f56bca258d14725c55d2c"
+  },
+  Bloom: {
+    code: "",
+    contractAddress: "0x750b3b3779e5c00d9b73c4cc3fe457e9032ae0a0"
+  },
+  Lunyr: {
+    code: "",
+    contractAddress: "0x5ab8d86e8e48b7cfe5de73a3df9bc093e489a6db"
   }
 };

@@ -135,4 +135,12 @@ export declare const TokenConfig: {
         code: string;
         contractAddress: string;
     };
+    Bloom: {
+        code: string;
+        contractAddress: string;
+    };
+    Lunyr: {
+        code: string;
+        contractAddress: string;
+    };
 };
