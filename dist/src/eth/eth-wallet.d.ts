@@ -17,7 +17,7 @@ export declare class EthereumWallet {
     mnemonicToSeed(mnemonic: any): any;
     getBalance(address: any): Promise<number>;
     sendAllEther(privateKey: any, toAddress: any, gasMultiplier?: number): Promise<any>;
-    sendEther(privateKey: any, toAddress: any, gasMultiplier?: number): Promise<any>;
+    sendEther(toAddress: any, balance: any, gasMultiplier?: number, gasIncremental?: number): Promise<any>;
     isWebSocketAlive(): boolean;
     unwrapEther(amount: any): Promise<any>;
 }

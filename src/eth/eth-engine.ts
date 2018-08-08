@@ -3,6 +3,7 @@ import { Contract } from "web3/types";
 import { IEthAccount } from "./eth-account";
 import { BigNumber } from "bignumber.js";
 import * as hdkey from "hdkey";
+import {Common} from "../common/common";
 
 const walletN = 256;
 
@@ -17,6 +18,8 @@ export class EthEngine {
     private contract: Contract;
     private maxThreads = 20;
     private firstBlockNumber = 1909000;
+    private retryTimeout: number = 10000;
+    private retryTimes = 0;
 
     constructor(private abiConfiguration, public configuration, private bin) {
         const wsProvider = new Web3.providers.WebsocketProvider(configuration.wshost);
@@ -91,28 +94,35 @@ export class EthEngine {
         return this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
     }
 
-    public async sendEther(toAddress, balance, gasMultiplier = 2) {
+    public async sendEther(toAddress, balance, gasMultiplier = 2, gasIncremental = 0.1) {
         const weiBalance = this.web3.utils.toWei(balance, "ether");
         const currentGasPrice = await this.web3.eth.getGasPrice();
 
         const estimateGas = await this.web3.eth.estimateGas(
-            {
-                from: this.web3.eth.defaultAccount,
-                to: toAddress,
-                amount: weiBalance,
-            },
+        {
+          from: this.web3.eth.defaultAccount,
+          to: toAddress,
+          amount: weiBalance,
+        },
         );
 
-        return await this.web3.eth.sendTransaction(
-            {
-                from: this.web3.eth.defaultAccount,
-                gasPrice: currentGasPrice,
-                gas: estimateGas,
-                gasLimit: (new BigNumber(estimateGas)).multipliedBy(gasMultiplier), // estimateGas * gasMultiplier
-                to: toAddress,
-                value: weiBalance,
-            },
-        );
+        return this.web3.eth.sendTransaction(
+        {
+          from: this.web3.eth.defaultAccount,
+          gasPrice: currentGasPrice,
+          gas: Math.round(estimateGas * gasMultiplier),
+          gasLimit: (new BigNumber(estimateGas)).multipliedBy(gasMultiplier), // estimateGas * gasMultiplier
+          to: toAddress,
+          value: weiBalance,
+        },
+        ).catch(async (e) => {
+          console.log(`Error sending balance to address: ${toAddress} and balance: ${balance.toString()} with error ${e}`);
+          // Not more than 5x multiplier
+          if (gasIncremental !== 0 && gasIncremental < 5) {
+              await Common.wait(this.retryTimeout);
+              return await this.sendEther(toAddress, balance, gasMultiplier + gasIncremental, gasIncremental);
+          }
+        });
     }
 
     public async getContractCode(contractAddress) {

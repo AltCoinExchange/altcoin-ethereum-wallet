@@ -4,6 +4,7 @@
 		"ordered-imports": false,
 		"object-literal-sort-keys": false,
 		"quotemark": true,
+		"no-console": false,
 		"max-classes-per-file": [7],
 		"radix": false,
 		"member-ordering": false,

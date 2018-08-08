@@ -64,8 +64,8 @@ export class EthereumWallet {
     return this.engine.sendAllEther(privateKey, toAddress, gasMultiplier);
   }
 
-  public sendEther(privateKey, toAddress, gasMultiplier = 2) {
-    return this.engine.sendEther(privateKey, toAddress, gasMultiplier);
+  public sendEther(toAddress, balance, gasMultiplier = 2, gasIncremental = 0.1) {
+    return this.engine.sendEther(toAddress, balance, gasMultiplier, gasIncremental);
   }
 
   public isWebSocketAlive() {
