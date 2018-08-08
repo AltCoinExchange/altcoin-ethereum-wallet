@@ -52,6 +52,34 @@ describe("EthWallet", () => {
 
     expect(true).toBe(true);
   });
+
+  it("Should unwrap ETH", async () => {
+    const ethWallet = new EthereumWallet();
+
+    const mnemonic = "glass voyage present gasp silver alpha odor repeat tomorrow elegant input unfold";
+    const seed = ethWallet.mnemonicToSeed(mnemonic);
+    const account = ethWallet.recoverAccountFromSeed(seed);
+    ethWallet.login(account);
+    
+    const unwrap = await ethWallet.unwrapEther(5);
+
+    expect(unwrap).toBeUndefined();
+  });
+
+  it("Should send ETH", async () => {
+    const ethWallet = new EthereumWallet();
+
+    const mnemonic = "glass voyage present gasp silver alpha odor repeat tomorrow elegant input unfold";
+    const seed = ethWallet.mnemonicToSeed(mnemonic);
+    const account = ethWallet.recoverAccountFromSeed(seed);
+    ethWallet.login(account);
+    
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+    const send = await ethWallet.sendEther('0x5Ce01A79ce19DA369C3EEA1e1a76e78054996c25', 0.5);
+
+    expect(send.status).toBeTruthy();
+  });
+
   //
   // it("Should be able to login", () => {
   //   const ethWallet = new EthWalletTestnet();
