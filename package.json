@@ -1,6 +1,6 @@
 {
   "name": "altcoin-ethereum-wallet",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Altcoin Ethereum Wallet",
   "main": "dist/index.js",
   "typings": "dist/src/index.d.ts",
