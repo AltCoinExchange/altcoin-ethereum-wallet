@@ -61,41 +61,29 @@ export class EthEngine {
         return this.web3.utils.fromWei(balance, "ether");
     }
 
-    public async sendAllEther(privateKey, toAddress, gasMultiplier = 2) {
-        const currentBalance = await this.getBalance(this.web3.eth.defaultAccount);
+    public async sendAllEther(toAddress, gasMultiplier = 2) {
+        const weiBalance = await this.web3.eth.getBalance(this.web3.eth.defaultAccount);
         const currentGasPrice = await this.web3.eth.getGasPrice();
+        const estimateGas = await this.web3.eth.estimateGas({
+            from: this.web3.eth.defaultAccount,
+            to: toAddress,
+            amount: weiBalance,
+        });
 
-        const estimateGas = await this.web3.eth.estimateGas(
-            {
-                from: this.web3.eth.defaultAccount,
-                to: toAddress,
-                amount: currentBalance,
-            },
-        );
+        const txCost = new BigNumber(estimateGas).times(currentGasPrice);
+        const allEther = new BigNumber(weiBalance).minus(txCost);
 
-        const allEther: string = (new BigNumber(currentBalance))
-          .minus(estimateGas)
-          .multipliedBy(
-            (new BigNumber(currentGasPrice))
-              .multipliedBy(gasMultiplier)).toString();
-
-        const signedTx = await this.web3.eth.signTransaction(
-            {
-                from: this.web3.eth.defaultAccount,
-                gasPrice: currentGasPrice,
-                gas: estimateGas,
-                gasLimit: (new BigNumber(estimateGas)).multipliedBy(gasMultiplier).toString(), // estimateGas * gasMultiplier
-                to: toAddress,
-                value: allEther, // currentBalance - estimateGas * currentGasPrice * gasMultiplier,
-                data: "",
-            }, privateKey,
-        );
-
-        return this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+        return await this.web3.eth.sendTransaction({
+            from: this.web3.eth.defaultAccount,
+            gasPrice: currentGasPrice.toString(),
+            gas: estimateGas.toString(),
+            to: toAddress,
+            value: allEther.toString(), // currentBalance - estimateGas * currentGasPrice,
+        });
     }
 
     public async sendEther(toAddress, balance, gasMultiplier = 2, gasIncremental = 0.1) {
-        const weiBalance = this.web3.utils.toWei(balance, "ether");
+        const weiBalance = this.web3.utils.toWei(balance.toString(), "ether");
         const currentGasPrice = await this.web3.eth.getGasPrice();
 
         const estimateGas = await this.web3.eth.estimateGas(
@@ -109,11 +97,10 @@ export class EthEngine {
         return this.web3.eth.sendTransaction(
         {
           from: this.web3.eth.defaultAccount,
-          gasPrice: currentGasPrice,
-          gas: Math.round(estimateGas * gasMultiplier),
-          gasLimit: (new BigNumber(estimateGas)).multipliedBy(gasMultiplier), // estimateGas * gasMultiplier
+          gasPrice: currentGasPrice.toString(),
+          gas: Math.round(estimateGas * gasMultiplier).toString(),
           to: toAddress,
-          value: weiBalance,
+          value: weiBalance.toString(),
         },
         ).catch(async (e) => {
           console.log(`Error sending balance to address: ${toAddress} and balance: ${balance.toString()} with error ${e}`);
