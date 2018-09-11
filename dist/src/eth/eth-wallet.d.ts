@@ -6,7 +6,7 @@ export declare class EthereumWallet {
     engine: EthEngine;
     etherWrapper: EtherWrapper;
     private appConfiguration;
-    constructor(configuration?: any);
+    constructor(configuration?: any, engine?: any);
     getAddress(): string;
     login(keystore: any): any;
     create(password: any): IEthAccount;

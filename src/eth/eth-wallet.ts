@@ -10,13 +10,17 @@ export class EthereumWallet {
   public etherWrapper: EtherWrapper;
   private appConfiguration;
 
-  constructor(configuration?: any) {
+  constructor(configuration?: any, engine?) {
     if (!configuration) {
       this.appConfiguration = AppConfig.EthConfiguration.hosts[0];
     } else {
       this.appConfiguration = configuration;
     }
-    this.engine = new EthEngine(null, this.appConfiguration, null);
+    if (!engine) {
+      this.engine = new EthEngine(null, this.appConfiguration, null);
+    } else {
+      this.engine = engine;
+    }
     this.etherWrapper = new EtherWrapper(this.engine);
   }
 
