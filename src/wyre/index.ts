@@ -1,4 +1,4 @@
-import * as Web3 from "web3/src";
+import Web3 from "web3";
 import * as AppConfig from "../config/config-eth";
 import wyreJSON from "./abi/wyre-abi.json";
 

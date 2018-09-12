@@ -1,4 +1,4 @@
-import * as Web3 from "web3/src";
+import Web3 from "web3";
 import { Contract } from "web3/types";
 import { IEthAccount } from "./eth-account";
 import { BigNumber } from "bignumber.js";
