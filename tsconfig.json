@@ -17,7 +17,9 @@
     ],
     "types": [
       "@types/node"
-    ]
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
   },
   "exclude": [
     "node_modules"
