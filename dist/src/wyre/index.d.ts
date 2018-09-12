@@ -4,5 +4,5 @@ export declare class WyreVerify {
     private config;
     private contractAddress;
     constructor();
-    checkUserStatus(address: any): any;
+    checkUserStatus(address: any): void;
 }
